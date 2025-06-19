@@ -1,0 +1,74 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">🎛 Panel de Administración de Productos</h2>
+
+    <!-- FORMULARIO -->
+    <form (ngSubmit)="guardarProducto()" class="row g-3 mb-4">
+
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="producto.nombre" name="nombre"
+                required />
+        </div>
+
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Descripción" [(ngModel)]="producto.descripcion"
+                name="descripcion" required />
+        </div>
+
+        <div class="col-md-4">
+            <input type="number" class="form-control" placeholder="Precio" [(ngModel)]="producto.precio" name="precio"
+                required />
+        </div>
+
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Categoría" [(ngModel)]="producto.categoria"
+                name="categoria" required />
+        </div>
+
+        <div class="col-md-4">
+            <input type="number" class="form-control" placeholder="Stock" [(ngModel)]="producto.stock" name="stock"
+                required />
+        </div>
+
+        <div class="col-md-12">
+            <input type="file" class="form-control" (change)="cambiarImagen($event)" />
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary mt-2">Guardar Producto</button>
+        </div>
+    </form>
+
+    <!-- TABLA DE PRODUCTOS -->
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor="let p of productos">
+                    <td>
+                        <img *ngIf="p.imagen" [src]="'http://localhost:5000/uploads/' + p.imagen" alt="{{ p.nombre }}"
+                            width="70" style="object-fit: cover; height: 70px;" class="img-thumbnail" />
+                    </td>
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.descripcion }}</td>
+                    <td>{{ p.precio | currency:'COP' }}</td>
+                    <td>{{ p.categoria }}</td>
+                    <td>{{ p.stock }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm me-1" (click)="seleccionarProducto(p)">Actualizar</button>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarProducto(p._id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">🛒 Carrito de Compras</h2>
+
+    <!-- Si el carrito está vacío -->
+    <div *ngIf="carrito.length === 0" class="alert alert-info text-center">
+        No hay productos en el carrito.
+    </div>
+
+    <!-- Si hay productos -->
+    <div *ngIf="carrito.length > 0" class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor="let producto of carrito">
+                    <td>
+                        <img *ngIf="producto.imagen" [src]="'http://localhost:5000/uploads/' + producto.imagen"
+                            alt="{{ producto.nombre }}" width="70" style="object-fit: cover; height: 70px;"
+                            class="img-thumbnail" />
+                    </td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.precio | currency: 'COP' }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>{{ (producto.precio * producto.cantidad) | currency: 'COP' }}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarDelCarrito(producto)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+            <h4>Total: {{ calcularTotal() | currency: 'COP' }}</h4>
+            <button class="btn btn-success mt-2 mt-md-0" (click)="RealizarCompra()">
+                Realizar compra
+            </button>
+        </div>
+    </div>
+</div>

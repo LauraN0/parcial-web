@@ -1,0 +1,25 @@
+<div class="container mt-4">
+    <h2>Resumen de tu compra</h2>
+
+    <!-- Mostrar mensaje después de finalizar compra -->
+    <div *ngIf="compraFinalizada" class="alert alert-success mt-3">
+        ¡Gracias por tu compra! 🎉
+    </div>
+
+    <!-- Mostrar carrito si hay productos -->
+    <div *ngIf="!compraFinalizada">
+        <div *ngIf="carrito.length === 0">
+            <p>No hay productos en el carrito.</p>
+        </div>
+
+        <div *ngIf="carrito.length > 0">
+            <ul class="list-group mb-3">
+                <li class="list-group-item" *ngFor="let producto of carrito">
+                    {{ producto.nombre }} - {{ producto.precio | currency:'COP' }}
+                </li>
+            </ul>
+            <h4>Total: {{ total | currency:'COP' }}</h4>
+            <button class="btn btn-success" (click)="finalizarCompra()">Finalizar compra</button>
+        </div>
+    </div>
+</div>
