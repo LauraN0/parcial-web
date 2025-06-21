@@ -92,7 +92,9 @@ export class CatalogoComponent implements OnInit {
     const data = {
       nombre: producto.nombre,
       descripcion: producto.descripcion,
-      precio: producto.precio
+      precio: producto.precio,
+      categoria: producto.categoria,
+      stock: producto.stock
     };
 
     this.productoService.editarProducto(producto._id, data).subscribe(
