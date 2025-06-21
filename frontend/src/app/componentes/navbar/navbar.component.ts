@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../servicios/auth.service';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   usuario: any;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     const token = this.authService.obtenerToken();
@@ -29,7 +28,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  cerrarSesion() {
+  cerrarSesion(): void {
     this.authService.cerrarSesion();
     this.router.navigate(['/login']);
   }
