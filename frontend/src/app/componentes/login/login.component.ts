@@ -30,7 +30,9 @@ export class LoginComponent {
   }
 
   iniciarSesion() {
+    console.log('Iniciar Sesión');
     if (this.formulario.invalid) {
+      console.log('Formulario inválido');
       this.formulario.markAllAsTouched();
       return;
     }
