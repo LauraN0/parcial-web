@@ -55,7 +55,7 @@
             <tbody class="text-center">
                 <tr *ngFor="let p of productos">
                     <td>
-                        <img *ngIf="p.imagen" [src]="'http://localhost:5000/uploads/' + p.imagen" alt="{{ p.nombre }}"
+                        <img *ngIf="p.imagen" [src]="'http://137.184.206.51:5000/uploads/' + p.imagen" alt="{{ p.nombre }}"
                             width="70" style="object-fit: cover; height: 70px;" class="img-thumbnail" />
                     </td>
                     <td>{{ p.nombre }}</td>

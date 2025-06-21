@@ -23,7 +23,7 @@
             <tbody class="text-center">
                 <tr *ngFor="let producto of carrito">
                     <td>
-                        <img *ngIf="producto.imagen" [src]="'http://localhost:5000/uploads/' + producto.imagen"
+                        <img *ngIf="producto.imagen" [src]="'http://137.184.206.51:5000/uploads/' + producto.imagen"
                             alt="{{ producto.nombre }}" width="70" style="object-fit: cover; height: 70px;"
                             class="img-thumbnail" />
                     </td>
