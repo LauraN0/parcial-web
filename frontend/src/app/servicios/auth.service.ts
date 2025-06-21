@@ -45,6 +45,20 @@ export class AuthService {
         return payload.rol;
     }
 
+    estaAutenticado(): boolean {
+        const token = this.obtenerToken();
+        if (!token) return false;
+
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const exp = payload.exp;
+            const ahora = Math.floor(Date.now() / 1000);
+            return exp > ahora;
+        } catch (e) {
+            return false;
+        }
+    }
+
     obtenerNombre(): string | null {
         return localStorage.getItem('nombre');
     }
