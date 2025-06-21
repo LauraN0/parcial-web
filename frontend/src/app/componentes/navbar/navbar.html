@@ -27,7 +27,7 @@
 
             <!-- Usuario + Cerrar sesión -->
             <span class="navbar-text me-3" *ngIf="authService.estaAutenticado()">
-                {{ authService.obtenerNombreUsuario() }}
+                {{ authService.obtenerNombre() }}
             </span>
             <button class="btn btn-outline-light" (click)="cerrarSesion()" *ngIf="authService.estaAutenticado()">
                 Cerrar sesión
